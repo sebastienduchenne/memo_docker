@@ -1,0 +1,5 @@
+-lancer le conteneur
+    docker run -d --name <nom_cont> -p 8080:3000 <nom_img>
+
+-aller sur la page
+    http://localhost:8080/
