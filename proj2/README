@@ -5,6 +5,9 @@
     -on part de 
 
 
+> mongoimport --host <host_name> --username <user_name> --password <password> --db <database_name> --collection <collection_name> --file <input_file>
+
+> mongoimport --host localhost --username root --password sebastien --db db --collection articles --file articles.json
 ----------------------------------------------
 
 -build une image : docker build -t my_img .

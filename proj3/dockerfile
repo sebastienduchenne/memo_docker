@@ -15,9 +15,6 @@ COPY package.json .
 # Couche node
 RUN npm i
 
-# mySQL
-RUN apt-get install ${APT_FLAGS} mariadb-server
-
 COPY db/articles.sql / 
 
 # pour le volume

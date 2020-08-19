@@ -1,6 +1,23 @@
 *** nodejs + mysql dans 2 conteneurs différents
 
--fichier sql
--on pull l'image mysql, puis on surcharge les variables d'env
--on créé un dockerfile pour créer une image avec notre app
--on créé un docker-compose
+-fichier json pour la db mongo
+-1 dockerfile
+    -on part de nodejs
+-1 docker-compose.yml
+    mongo :
+        volume
+
+
+https://medium.com/faun/managing-mongodb-on-docker-with-docker-compose-26bf8a0bbae3
+
+
+> mongoimport --host <host_name> --username <user_name> --password <password> --db <database_name> --collection <collection_name> --file <input_file>
+
+> mongoimport --host localhost --username root --password sebastien --db db --collection articles --file articles.json
+----------------------------------------------
+
+*** Etapes
+
+-builder l'image node : docker build -t myapp .
+
+-lancer le docker-compose : docker-compose up -d
