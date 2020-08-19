@@ -1,0 +1,6 @@
+*** nodejs + mysql dans 2 conteneurs différents
+
+-fichier sql
+-on pull l'image mysql, puis on surcharge les variables d'env
+-on créé un dockerfile pour créer une image avec notre app
+-on créé un docker-compose
