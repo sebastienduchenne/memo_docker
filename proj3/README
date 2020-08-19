@@ -18,6 +18,6 @@ https://medium.com/faun/managing-mongodb-on-docker-with-docker-compose-26bf8a0bb
 
 *** Etapes
 
--builder l'image node : docker build -t myapp .
+-builder l'image node : docker build -t myapp_i .
 
 -lancer le docker-compose : docker-compose up -d

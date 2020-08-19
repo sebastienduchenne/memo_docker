@@ -12,13 +12,11 @@ WORKDIR  ${DOCUMENTROOT}
 
 COPY package.json .
 
-# Couche node
+# installation des dépendances
 RUN npm i
 
-COPY db/articles.sql / 
-
-# pour le volume
-RUN mkdir /data
+# création d'un volume pour la bd
+#RUN mkdir /data
 
 # OUVERTURE DU PORT HTTP
 EXPOSE 3000
@@ -27,4 +25,4 @@ EXPOSE 3000
 CMD [ "npm", "start" ]
 
 # copie des autres fichiers
-COPY . .
+COPY index.js .

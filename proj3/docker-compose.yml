@@ -4,6 +4,7 @@ services:
     db:
         image: mongo-express:latest
         container_name: mongo_c
+        # démarrer le conteneur en cas de redémarrage du serveurs
         restart: always
         volumes:
             # pour initialiser la db
@@ -11,23 +12,17 @@ services:
             # ro : read only
             - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
             # pour la persitence des données
-            - ./mongo-volume:/data/db
+            #- ./mongo-volume:/data/db
         environment:
-            ME_CONFIG_BASICAUTH_USERNAME: "user"
-            ME_CONFIG_BASICAUTH_PASSWORD: "sebastien" 
+            ME_CONFIG_BASICAUTH_USERNAME: "username"
+            ME_CONFIG_BASICAUTH_PASSWORD: "password" 
         ports:
-          # exposer les ports de 27017 à 27019
-          - '27017-27019:27017-27019' 
+          - '27018:27018' 
     app:
-        image: myapp
+        image: myapp_i
         container_name: myapp_c
         restart: always
-        volumes:
-            - ./app:/var/www/html
         ports:
             - 8080:80
         depends_on:
             - db
-
-volumes:
-    db-volume:
