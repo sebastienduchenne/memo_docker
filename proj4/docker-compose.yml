@@ -1,0 +1,34 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    volumes:
+      # persistance des données
+      # docker utilise le volume 'db_data' (sur l'hote) pour le dossier '/var/lib/mysql' situé dans le conteneur
+      # db_data est accessible sur l'hote à /var/lib/docker/volumes/<volume nommé>/_data
+      # on aurait aussi pu mettre un chemin complet, cad un volume non nommé
+      - db_data:/var/lib/mysql
+    restart: always # politique de redémarrage
+    environment: # variables d'environnement
+      MYSQL_ROOT_PASSWORD: rootpassword # on définit le mdp root
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    
+  wordpress:
+    depends_on:
+      - db # le service 'wordpress' dépend de 'db', donc docker démarre 'db' avant 'wordpress'
+    image: wordpress:latest
+    ports:
+      - "8000:80" # rendre accessible le service depuis l'extérieur sur le port 8000
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+
+volumes: # volumes nommés utilisés
+  db_data: {}
+  #web_data:
+    #external: true # volume créé au préalable

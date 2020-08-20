@@ -1,0 +1,24 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code
+    depends_on:
+     - redis
+  redis:
+    image: redis
+    volumes:
+      - redis-data:/code
+    networks:
+      - back-tier
+
+volumes:
+  redis-data: 
+    driver: local
+
+networks:
+  back-tier:
+    driver: bridge
