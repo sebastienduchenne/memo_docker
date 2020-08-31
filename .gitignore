@@ -1,6 +1,4 @@
-proj1/node_modules
-proj1/package-lock.json
-proj2/node_modules
-proj2/package-lock.json
-proj3/node_modules
-proj3/package-lock.json
+proj*/node_modules
+proj*/package-lock.json
+proj*/env
+proj*/__pycache__

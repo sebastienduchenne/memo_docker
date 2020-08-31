@@ -1,0 +1,2 @@
+-expose app node : 3000:3000
+-le nom du service de redis doit être le même dans "host: 'redis'" du create client

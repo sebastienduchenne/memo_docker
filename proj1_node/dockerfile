@@ -1,0 +1,28 @@
+FROM node:slim
+
+# MÉTADONNÉES DE L'IMAGE
+LABEL version="1.0" maintainer="D <d@gmail.com>"
+
+# VARIABLES TEMPORAIRES
+ARG APT_FLAGS="-q -y"
+ARG DOCUMENTROOT="/usr/src/app"
+
+# RÉPERTOIRE DE TRAVAIL
+WORKDIR  ${DOCUMENTROOT}
+
+COPY package.json .
+
+# Couche node
+RUN npm i
+
+# pour le volume
+RUN mkdir /data
+
+# OUVERTURE DU PORT HTTP du conteneur
+EXPOSE 3000
+
+# DÉMARRAGE DES SERVICES LORS DE L'EXÉCUTION DE L'IMAGE
+CMD [ "npm", "start" ]
+
+# copie des autres fichiers
+COPY . .

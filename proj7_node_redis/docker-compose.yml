@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+    redis:
+        image: redis:4.0.11-alpine
+        #container_name: redis_c
+    app:
+        build: .
+        image: myapp_i
+        container_name: myapp_c
+        ports:
+            - 3000:3000
+        depends_on:
+            - redis

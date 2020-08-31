@@ -1,0 +1,23 @@
+FROM node:slim
+
+ARG DOCUMENTROOT="/usr/src/app"
+
+# RÉPERTOIRE DE TRAVAIL
+WORKDIR  ${DOCUMENTROOT}
+
+# copie des fichiers
+COPY package.json .
+COPY package-lock.json .
+COPY index.js .
+
+# installation des dépendances
+RUN npm i
+
+# création d'un volume pour la bd
+RUN mkdir /data
+
+# OUVERTURE DU PORT HTTP
+EXPOSE 3000
+
+# DÉMARRAGE DES SERVICES LORS DE L'EXÉCUTION DE L'IMAGE
+CMD [ "npm", "start" ]

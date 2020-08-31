@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+    mongodb:
+        image: mongo
+        container_name: mongo_c
+        volumes:
+            # pour initialiser la db, on copie les données (.sh, .sql) dans le dossier docker-entrypoint-initdb.d, qui existe déjà dans le conteneur mongo, puis les données seront insérées dans la db
+            - ./db:/docker-entrypoint-initdb.d
+            # pour la persitence des données
+            #- db:/data/db
+        environment:
+            ME_CONFIG_BASICAUTH_USERNAME: "user"
+            ME_CONFIG_BASICAUTH_PASSWORD: "password"
+            MONGO_INITDB_DATABASE: "dbname"
+        ports:
+          - '27017:27017' 
+    app:
+        build: .
+        image: myapp_i
+        container_name: myapp_c
+        ports:
+            - 8080:80
+        depends_on:
+            - mongodb

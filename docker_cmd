@@ -1,0 +1,28 @@
+docker images
+docker ps
+
+docker build -t myapp_i .
+
+docker-compose up -d
+
+docker rmi -f myapp_i
+
+docker stop myapp_c
+docker stop mysql_c
+
+docker logs mysql_c
+docker logs myapp_c
+
+docker rm -f myapp_c mysql_c
+docker rm -f myapp_c mongo_c
+
+docker exec -ti mysql bash
+    mysql -uuser -ppassword
+
+
+docker exec -ti mongo_c bash
+
+
+
+
+db.articles.insert({author:"a", title:"t", content:"c"})
